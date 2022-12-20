@@ -44,9 +44,7 @@ exports.login = catchAsync(async (req, res, next) => {
     }
 
     // 3) If everything ok, send token to client
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES,
-    });
+    const token = signToken(user._id);
 
     res.status(200).json({
         status: 'success',
